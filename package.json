@@ -1,0 +1,37 @@
+{
+  "name": "use-dark",
+  "version": "0.1.0",
+  "description": "A canvas based hook for sliding images, inspired by Netflix's Dark opening theme.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-file dist/index.js",
+    "prepare": "npm run build",
+    "test": "echo tests are missing"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikpundik/use-dark.git"
+  },
+  "author": "nikpundik",
+  "keywords": [
+    "react",
+    "react-hooks",
+    "canvas",
+    "dark",
+    "slider"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nikpundik/use-dark/issues"
+  },
+  "homepage": "https://github.com/nikpundik/use-dark/",
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2"
+  }
+}
