@@ -1,5 +1,7 @@
 # Use Dark
 
+:warning: Experimental WIP :warning:
+
 A canvas based hook for sliding images, inspired by Netflix's Dark opening theme.
 
 ## Requisites
