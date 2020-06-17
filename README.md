@@ -169,8 +169,8 @@ export default App;
 
 ### 0.1.2
 
-- responsive option: supports a list of integers couples [breakpoint, type]
-- onFadeIn / onFadeOut callbacks support: permit a better synchronization with external animations or music
+- responsive option: it supports a list of integers couples with the form of [breakpoint, type]
+- onFadeIn / onFadeOut callbacks revised: it enables a better synchronization with external animation or music
 
 ### 0.1.1
 
