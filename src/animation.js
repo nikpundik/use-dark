@@ -54,15 +54,17 @@ class Animation {
     this.accumTimeout += delta;
     this.accumImage += delta;
 
-    if (this.image)
+    if (this.image) {
+      const type = this.getType();
       draw(
         this.context,
         this.size,
         this.image,
         this.accumImage,
-        this.data.type,
+        type,
         this.data.speed
       );
+    }
 
     if (this.accumTimeout < FADE_TIME) {
       const opacity = this.accumTimeout / FADE_TIME;
@@ -73,6 +75,16 @@ class Animation {
     }
 
     this.request = requestAnimationFrame(this.update);
+  }
+
+  getType() {
+    if (!this.data.responsive) return this.data.type;
+    let min = this.data.type;
+    for (let [breakpoint, type] of this.data.responsive) {
+      if (this.canvas.width > breakpoint) return min;
+      min = type;
+    }
+    return min;
   }
 
   startListeners() {
@@ -95,10 +107,20 @@ class Animation {
   }
 
   setImage(data, onLoaded) {
+    const imageData = Object.assign(
+      {
+        type: 3,
+        speed: 0.3,
+        responsive: [[600, 1]],
+      },
+      data
+    );
+    if (imageData.responsive)
+      imageData.responsive.sort(([b1], [b2]) => b2 - b1);
     if (this.loadingImage) this.loadingImage.destroy();
     clearTimeout(this.fadeInTimeout);
-    this.loadingImage = new LoadImage(data.image, (img) =>
-      this.showImage(data, img, onLoaded)
+    this.loadingImage = new LoadImage(imageData.image, (img) =>
+      this.showImage(imageData, img, onLoaded)
     );
   }
 

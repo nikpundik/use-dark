@@ -83,6 +83,10 @@ const slides = [
       image: img1Src,
       type: 3,
       speed: 0.3,
+      responsive: [
+        [600, 1],
+        [800, 2],
+      ],
     },
     data: {
       text: 'USE DARK',
@@ -98,6 +102,10 @@ const slides = [
       image: 'https://external.url/image.jpg',
       type: 4,
       speed: 0.4,
+      responsive: [
+        [600, 1],
+        [800, 3],
+      ],
     },
     data: {
       text: 'INSTALL',
@@ -145,6 +153,16 @@ function App() {
 export default App;
 
 ```
+
+## Changelog
+
+### 0.1.2
+
+- responsive option: supports a list of integers couples [breakpoint, type]
+
+### 0.1.1
+
+- initial release
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "use-dark",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A canvas based hook for sliding images, inspired by Netflix's Dark opening theme.",
   "main": "dist/index.js",
   "scripts": {

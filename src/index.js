@@ -6,8 +6,6 @@ function getData(data) {
   if (typeof data === 'string')
     return {
       image: data,
-      type: 3,
-      speed: 0.3,
     };
   return data;
 }
