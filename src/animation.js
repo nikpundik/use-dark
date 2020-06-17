@@ -106,7 +106,7 @@ class Animation {
     this.size = size;
   }
 
-  setImage(data, onLoaded) {
+  setImage(data, onFadeIn, onFadeOut) {
     const imageData = Object.assign(
       {
         type: 3,
@@ -120,18 +120,19 @@ class Animation {
     if (this.loadingImage) this.loadingImage.destroy();
     clearTimeout(this.fadeInTimeout);
     this.loadingImage = new LoadImage(imageData.image, (img) =>
-      this.showImage(imageData, img, onLoaded)
+      this.showImage(imageData, img, onFadeIn, onFadeOut)
     );
   }
 
-  showImage(data, image, onLoaded) {
+  showImage(data, image, onFadeIn, onFadeOut) {
     this.accumTimeout = 0;
+    if (onFadeOut) onFadeOut(data);
 
     this.fadeInTimeout = setTimeout(() => {
       this.data = data;
       this.image = image;
       this.accumImage = 0;
-      if (onLoaded) onLoaded(data);
+      if (onFadeIn) onFadeIn(data);
     }, FADE_TIME);
   }
 

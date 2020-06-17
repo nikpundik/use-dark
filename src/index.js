@@ -22,12 +22,13 @@ function useAnimation(canvasRef) {
   return animation;
 }
 
-function useDark(data, onLoad) {
+function useDark(data, onFadeIn, onFadeOut) {
   const canvasRef = useRef(null);
   const animation = useAnimation(canvasRef);
   useEffect(() => {
-    if (animation && data) animation.setImage(getData(data), onLoad);
-  }, [animation, data, onLoad]);
+    if (animation && data)
+      animation.setImage(getData(data), onFadeIn, onFadeOut);
+  }, [animation, data, onFadeIn, onFadeOut]);
   return canvasRef;
 }
 

@@ -119,25 +119,36 @@ const slides = [
 ];
 
 function App() {
-  const [index, setIndex] = useState(0);
-  const [data, setData] = useState({});
+  const [slide, setSlide] = useState({
+    index: 0,
+    data: {},
+    dark: slides[0].dark,
+  });
   const [fading, setFading] = useState(true);
   const props = useSpring({ opacity: fading ? 0 : 1 });
 
-  const onLoaded = useCallback(() => {
-    setData(slides[index].data);
-    setFading(false);
-  }, [index]);
-
-  const ref = useDark(slides[index].dark, onLoaded);
-
-  useEffect(() => {
-    const i = setInterval(() => {
-      setFading(true);
-      setIndex((current) => (current < slides.length - 1 ? current + 1 : 0));
-    }, 5000);
-    return () => clearInterval(i);
+  const onFadeOut = useCallback(() => {
+    setFading(true);
   }, []);
+
+  const onFadeIn = useCallback(() => {
+    setFading(false);
+    setSlide((prev) => ({ ...prev, data: slides[prev.index].data }));
+    setTimeout(() => {
+      setSlide((prev) => {
+        const index = prev.index < slides.length - 1 ? prev.index + 1 : 0;
+        return {
+          ...prev,
+          index,
+          dark: slides[index].dark,
+        };
+      });
+    }, 5000);
+  }, []);
+
+  const { data, dark } = slide;
+
+  const ref = useDark(dark, onFadeIn, onFadeOut);
 
   return (
     <div>
@@ -159,6 +170,7 @@ export default App;
 ### 0.1.2
 
 - responsive option: supports a list of integers couples [breakpoint, type]
+- onFadeIn / onFadeOut callbacks support: permit a better synchronization with external animations or music
 
 ### 0.1.1
 
