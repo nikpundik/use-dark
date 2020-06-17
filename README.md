@@ -4,6 +4,8 @@
 
 A canvas based hook for sliding images, inspired by Netflix's Dark opening theme.
 
+Demo @ https://use-dark.vercel.app/
+
 ## Requisites
 
 React 16.8+
